@@ -6,7 +6,7 @@ S H A P E   v2.1         Continuous Shape Measures calculation
 
 test 
 
-L-2             1 Dinfh Linear                                             
+vT-2            2 C2v   Divacant tetrahedron                               
 
-Structure [ML2 ]          L-2
- example        ,      14.298
+Structure [ML2 ]         vT-2
+ example        ,       0.000
