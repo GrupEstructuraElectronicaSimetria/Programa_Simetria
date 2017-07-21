@@ -1,0 +1,9 @@
+$ test
+! vertexes central_atom
+2 1
+! ideal structure
+2
+example
+O     -1.569 14.207 11.274
+H     -2.015 14.546 10.445
+H     -0.625 14.537 11.303
