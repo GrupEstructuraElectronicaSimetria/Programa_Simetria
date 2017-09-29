@@ -17,7 +17,8 @@ class Molecule:
 
     def set_coord(self, coord):
         r = center_mass.get_v_cm(self._elements, coord)
-        coord_cm = coord - r
+        self._cent_mass = r
+        coord_cm = coord - self._cent_mass
         self._cent_coord = np.array(coord_cm)
 
     def get_coord(self):
@@ -29,6 +30,9 @@ class Molecule:
     def get_n_atoms(self):
         natoms = len(self._elements)
         return natoms
+
+    def get_cent_mass(self):
+        return self._cent_mass
 
 
     class Geometry:

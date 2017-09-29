@@ -1,0 +1,57 @@
+coord = H2O.get_coord()
+ele = H2O.get_elements()
+other_list, list_frag = [], []
+for idx, element in enumerate(ele):
+#    print(element, coord[idx])
+    if element == 'C':
+        list_frag.append(idx)
+    else:
+        other_list.append(idx)
+
+ideal_number = 100.0
+for idx in list_frag:
+    list1 = list(filter((idx).__ne__, list_frag))
+    for pair in itertools.combinations(list1, 2):
+
+        new_list, new_elements = [], []
+        new_list.extend(other_list)
+        new_list.append(idx)
+        new_list.extend(pair)
+        new_coordinates = coord[new_list]
+        for idn in new_list:
+            new_elements.append(ele[idn])
+        test = shape.Shape(len(new_elements), new_coordinates,
+                           new_elements, 1)
+        new_number = float(test.get_number())
+        if new_number < ideal_number:
+            ideal_coordinates = new_coordinates
+            ideal_elements = new_elements
+            ideal_number = new_number
+        clean.cleaning(['tab', 'dat'])
+
+for pair in itertools.combinations(list_frag, 2):
+    list1 = list_frag
+    for i in pair:
+        list1 = list(filter(i.__ne__, list1))
+    for a, b in itertools.combinations(list1, 2):
+        new_point = (coord[a] + coord[b])/2
+        new_list, new_elements = [], []
+        new_list.extend(other_list)
+        new_list.extend(pair)
+        new_coordinates = coord[new_list]
+        new_coordinates = np.vstack((new_coordinates, new_point))
+        for idn in new_list:
+            new_elements.append(ele[idn])
+        new_elements.append('C')
+        test = shape.Shape(len(new_elements), new_coordinates,
+                           new_elements, 1)
+        new_number = float(test.get_number())
+        if new_number < ideal_number:
+            ideal_coordinates = new_coordinates
+            ideal_elements = new_elements
+            ideal_number = new_number
+        clean.cleaning(['tab', 'dat'])
+
+print(ideal_number)
+for idx, element in enumerate(ideal_elements):
+    print(element, " ".join(map(str, ideal_coordinates[idx])))

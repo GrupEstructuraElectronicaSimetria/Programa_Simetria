@@ -8,7 +8,12 @@ class Shape:
         self.set_number(n_atoms, structure, elements, central_atom)
 
     def set_number(self, n_atoms, structure, elements, central_atom):
-        reference = running_shape.references()
+        if central_atom != 0:
+            vertexs = n_atoms - 1
+        else:
+            vertexs = n_atoms
+#        reference = running_shape.references(vertexs)
+        reference = '3'
         running_shape.shape_input(name, n_atoms, structure, elements,
                                   reference, central_atom)
         self.run_shape()

@@ -36,8 +36,8 @@ def run_shape(name):
     Popen(["./shape_macox", name], stdout=PIPE)
 
 
-def references():
-    proc = Popen(['./shape_macox', '+2'], stdout=PIPE)
+def references(vertexs):
+    proc = Popen(['./shape_macox', '+'+str(vertexs)], stdout=PIPE)
     out = []
     for line in proc.stdout:
         print(line.decode('utf-8'))
